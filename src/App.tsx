@@ -19,7 +19,7 @@ function App() {
 
   const AddAttemptMaxLimit = 3;
 
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   function handleRestartGame() {
     const isConfirmed = confirm("Reiniciar o jogo?");
@@ -71,7 +71,7 @@ function App() {
     setScore(currentScore);
     setLetter("");
 
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }
 
   function endGame(message: string) {

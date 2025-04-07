@@ -8,7 +8,7 @@ type Props = {
   onRestart: () => void;
 };
 
-export default function Header({ current, max, onRestart }) {
+export default function Header({ current, max, onRestart }: Props) {
   return (
     <div className={styles.container}>
       <img src={logo} alt="" />

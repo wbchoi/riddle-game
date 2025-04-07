@@ -1,7 +1,7 @@
 import Header from "./components/Header/Header";
 import styles from "./App.module.css";
 import { WORDS, Challenge } from "./utils/words";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Tip } from "./components/Tip/Tip";
 import { Letter } from "./components/Letter/Letter";
 import { Input } from "./components/Input/Input";
@@ -17,7 +17,9 @@ function App() {
   const [usedLetters, setUsedLetters] = useState<UsedLettersProps[]>([]);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
 
-  const AddAttemptMaxLimit = 5;
+  const AddAttemptMaxLimit = 3;
+
+  const inputRef = useRef(null);
 
   function handleRestartGame() {
     const isConfirmed = confirm("Reiniciar o jogo?");
@@ -68,6 +70,8 @@ function App() {
     setUsedLetters((prevState) => [...prevState, { value, correct }]);
     setScore(currentScore);
     setLetter("");
+
+    inputRef.current.focus();
   }
 
   function endGame(message: string) {
@@ -130,6 +134,7 @@ function App() {
 
         <div className={styles.guess}>
           <Input
+            ref={inputRef}
             autoFocus
             maxLength={1}
             placeholder="?"
